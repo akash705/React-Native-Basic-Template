@@ -12,7 +12,7 @@ import store from './components/store/store';
 import App from './App';
 
 
-var x = ()=>(
+var x =(
         <Provider store={store}>
         </Provider>   
 )
