@@ -1,11 +1,11 @@
 import { Navigation  } from 'react-native-navigation';
 import Auth from './screens/auth/auth';
-
+import log from './screens/login/log';
 
 
 // Register Components
 Navigation.registerComponent('app.auth',()=>Auth)
-
+Navigation.registerComponent('app.log',()=>log)
 
 
 
