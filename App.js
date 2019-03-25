@@ -8,6 +8,7 @@
 
 import React, {Component} from 'react';
 import {Platform, StyleSheet, Text, View ,TouchableOpacity} from 'react-native';
+import { connect } from 'react-redux';
 
 const instructions = Platform.select({
   ios: 'Press Cmd+R to reload,\n' + 'Cmd+D or shake for dev menu',
@@ -16,10 +17,11 @@ const instructions = Platform.select({
     'Shake or press menu button for dev menu',
 });
 
-export default class App extends Component {
+class App extends Component {
   clicked=(ev)=>{
     // alert('hello ');
     console.log('my chances are high');
+    this.props.dispatcher()
   }
   render() {
     return (
@@ -29,7 +31,7 @@ export default class App extends Component {
         <Text style={styles.instructions}>{instructions}</Text>
         <TouchableOpacity onPress={this.clicked}>
             <Text>
-             For more 
+             Counter { this.props.counter }
             </Text>
         </TouchableOpacity>  
       </View>
@@ -56,3 +58,16 @@ const styles = StyleSheet.create({
     marginBottom: 5,
   },
 });
+
+var matchToProps=(state)=>{
+  return {
+    counter:state.counter
+  }
+}
+var dispatch = (dispatch)=>{
+  return {
+    dispatcher:(data)=>dispatch({type:'INC',value:data})
+  }
+}
+
+export default connect( matchToProps,dispatch )(App);
