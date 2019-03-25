@@ -18,6 +18,13 @@ const instructions = Platform.select({
 });
 
 class App extends Component {
+  constructor(props){
+    super(props);
+    console.log('constructor loaded');
+  }
+  componentDidMount(){
+    console.log('props here',this.props.counter);
+  }
   clicked=(ev)=>{
     // alert('hello ');
     console.log('my chances are high');
@@ -70,4 +77,5 @@ var dispatch = (dispatch)=>{
   }
 }
 
+// export default App
 export default connect( matchToProps,dispatch )(App);
