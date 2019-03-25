@@ -28,7 +28,7 @@ class App extends Component {
   clicked=(ev)=>{
     // alert('hello ');
     console.log('my chances are high');
-    this.props.dispatcher()
+    this.props.dispatcher(2)
   }
   render() {
     return (
