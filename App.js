@@ -2,6 +2,24 @@ import { Navigation  } from 'react-native-navigation';
 import Auth from './screens/auth/auth';
 import log from './screens/login/log';
 
+Navigation.events().registerAppLaunchedListener(() => {
+  Navigation.setRoot({
+    root: {
+      stack:{
+        id:'App',
+        children:[
+          {
+            component: {
+              name: 'app.auth'
+            }
+          }
+        ]
+      }
+    },
+  });
+});
+
+
 
 // Register Components
 Navigation.registerComponent('app.auth',()=>Auth)
@@ -12,17 +30,6 @@ Navigation.registerComponent('app.log',()=>log)
 
 
 // starting App
-
-Navigation.events().registerAppLaunchedListener(() => {
-  Navigation.setRoot({
-    root: {
-      component: {
-        name: 'app.auth'
-      }
-    },
-  });
-});
-
 
 
 // old code=======================
