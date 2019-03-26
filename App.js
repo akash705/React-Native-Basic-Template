@@ -1,6 +1,9 @@
 import { Navigation  } from 'react-native-navigation';
 import Auth from './screens/auth/auth';
 import log from './screens/login/log';
+import store from './components/store/store';
+import { Provider } from 'react-redux';
+import React from 'react';
 
 Navigation.events().registerAppLaunchedListener(() => {
   Navigation.setRoot({
@@ -22,7 +25,12 @@ Navigation.events().registerAppLaunchedListener(() => {
 
 
 // Register Components
-Navigation.registerComponent('app.auth',()=>Auth)
+Navigation.registerComponent('app.auth',() => (props) => (
+  <Provider store={store}>
+    <Auth {...props} />
+  </Provider>
+)
+,()=>Auth)
 Navigation.registerComponent('app.log',()=>log)
 
 

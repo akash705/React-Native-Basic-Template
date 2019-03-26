@@ -1,11 +1,12 @@
 import React, {Component} from 'react';
 import {Text,View , Button} from 'react-native'
 import { Navigation } from 'react-native-navigation';
+import {connect} from 'react-redux';
 
 
-
-export default class Auth extends Component{
+class Auth extends Component{
     login=()=>{
+        this.props.dispatcher(100);
         Navigation.setRoot({
             root:{
                 component:{
@@ -46,8 +47,23 @@ export default class Auth extends Component{
                 <Text>
                     Hello
                 </Text>
-                <Button title="click me to login" onPress={this.login}></Button>
+                <Button title={
+                    "click me to login"+this.props.counter
+                } onPress={this.login}></Button>
             </View>
         )
     }
 }
+
+var matchToProps=(state)=>{
+  return {
+    counter:state.counter
+  }
+}
+var dispatch = (dispatch)=>{
+  return {
+    dispatcher:(data)=>dispatch({type:'INC',value:data})
+  }
+}
+
+export default connect(matchToProps,dispatch)(Auth);
